@@ -27,7 +27,7 @@ val response = response {
         "X-TEST-A" to "1234"
         "X-TEST-B" to "5678"
     }
-    body = "Hello, World!"
+    body { "Hello, World!" }
 }
 ```
 
