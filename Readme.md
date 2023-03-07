@@ -21,11 +21,11 @@ val response = ServerResponse.ok()
 DSL
 ```kotlin
 val response = response {
-    status = HttpStatus.OK
-    contentType = MediaType.TEXT_PLAIN
+    status { HttpStatus.OK }
+    contentType { MediaType.TEXT_PLAIN }
     headers {
-        "X-TEST-A" to "1234"
-        "X-TEST-B" to "5678"
+        header { "X-TEST-A" to "1234" }
+        header { "X-TEST-B" to "5678" }
     }
     body { "Hello, World!" }
 }
