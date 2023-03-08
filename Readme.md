@@ -3,7 +3,7 @@
 Kotlin DSL for ServerResponse.
 
 - [x] servlet DSL
-- [x] webflux DSL
+- [x] reative DSL
 
 ## Usage
 
@@ -31,7 +31,7 @@ val response = response {
 }
 ```
 
-Webflux DSL
+Reative DSL
 ```kotlin
 val responseWithBodyValue = withContext(CoroutineScope(Dispatchers.Default).coroutineContext) {
     response {

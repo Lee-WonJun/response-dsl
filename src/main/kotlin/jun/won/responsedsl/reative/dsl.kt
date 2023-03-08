@@ -1,4 +1,4 @@
-package jun.won.responsedsl.webflux
+package jun.won.responsedsl.reative
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.reactive.awaitSingle

@@ -1,4 +1,4 @@
-package jun.won.responsedsl.webflux
+package jun.won.responsedsl.reative
 
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
