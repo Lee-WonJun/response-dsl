@@ -1,7 +1,8 @@
 package jun.won.responsedsl.servlet
+
 import org.springframework.http.HttpHeaders
-import org.springframework.http.MediaType
 import org.springframework.http.HttpStatus
+import org.springframework.http.MediaType
 import org.springframework.web.servlet.function.ServerResponse
 
 /*
@@ -61,7 +62,7 @@ class ResponseBuilder {
         }
     }
 
-    private fun ServerResponse.BodyBuilder.headers(headersMap: Map<String,String>): ServerResponse.BodyBuilder {
+    private fun ServerResponse.BodyBuilder.headers(headersMap: Map<String, String>): ServerResponse.BodyBuilder {
         headersMap.forEach { (header, value) -> this.header(header, value) }
         return this
     }
@@ -87,7 +88,11 @@ fun response(init: ResponseBuilder.() -> Unit): ServerResponse {
     return builder.build()
 }
 
-fun makeDefaultResponse(status: HttpStatus , contentType:MediaType? = null, headersMap: Map<String, String>? = null): (init:ResponseBuilder.()-> Unit) -> ServerResponse {
+fun makeDefaultResponse(
+    status: HttpStatus,
+    contentType: MediaType? = null,
+    headersMap: Map<String, String>? = null
+): (init: ResponseBuilder.() -> Unit) -> ServerResponse {
     return { init ->
         response {
             this.status { status }

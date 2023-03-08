@@ -19,7 +19,7 @@ class ServletDslTest : FunSpec({
         val dsl = response {
             status { HttpStatus.OK }
             contentType { MediaType.TEXT_PLAIN }
-            header {"X-TEST-HEADER" to "TEST-VALUE" }
+            header { "X-TEST-HEADER" to "TEST-VALUE" }
             body { "Hello World" }
         }
 
@@ -41,7 +41,7 @@ class ServletDslTest : FunSpec({
             status { HttpStatus.OK }
             headers {
                 header { HttpHeaders.CONTENT_TYPE to MediaType.APPLICATION_JSON_VALUE }
-                header { "X-TEST-HEADER" to "TEST-VALUE"}
+                header { "X-TEST-HEADER" to "TEST-VALUE" }
             }
             body { Dummy("Jun", 25) }
         }
@@ -55,7 +55,8 @@ class ServletDslTest : FunSpec({
     }
 
     test("set Default Dsl Function via makeDefaultResponse") {
-        val ok_json = makeDefaultResponse (HttpStatus.OK, MediaType.APPLICATION_JSON, mapOf("X-TEST-HEADER" to "TEST-VALUE"))
+        val ok_json =
+            makeDefaultResponse(HttpStatus.OK, MediaType.APPLICATION_JSON, mapOf("X-TEST-HEADER" to "TEST-VALUE"))
         val dsl = ok_json {
             body { Dummy("Jun", 25) }
         }
@@ -79,7 +80,7 @@ class ServletDslTest : FunSpec({
             status { HttpStatus.OK }
             headers {
                 header { HttpHeaders.CONTENT_TYPE to MediaType.APPLICATION_JSON_VALUE }
-                header { "X-TEST-HEADER" to "TEST-VALUE"}
+                header { "X-TEST-HEADER" to "TEST-VALUE" }
             }
             body { Dummy("Jun", 25) }
         }
@@ -87,8 +88,8 @@ class ServletDslTest : FunSpec({
         val usedUnaryPlus = response {
             status { HttpStatus.OK }
             headers {
-                +{HttpHeaders.CONTENT_TYPE to MediaType.APPLICATION_JSON_VALUE}
-                +{"X-TEST-HEADER" to "TEST-VALUE"}
+                +{ HttpHeaders.CONTENT_TYPE to MediaType.APPLICATION_JSON_VALUE }
+                +{ "X-TEST-HEADER" to "TEST-VALUE" }
             }
             body { Dummy("Jun", 25) }
         }
