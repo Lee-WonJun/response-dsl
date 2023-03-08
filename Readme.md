@@ -29,6 +29,16 @@ val response = response {
     }
     body { "Hello, World!" }
 }
+
+val responseHeaderShortCut = response {
+    status { HttpStatus.OK }
+    contentType { MediaType.TEXT_PLAIN }
+    headers {
+        +{ "X-TEST-A" to "1234" }
+        +{ "X-TEST-B" to "5678" }
+    }
+    body { "Hello, World!" }
+}
 ```
 
 Reative DSL
