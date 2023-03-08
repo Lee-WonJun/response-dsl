@@ -56,7 +56,6 @@ class ServletDslTest : FunSpec({
 
     test("set Default Dsl Function via makeDefaultResponse") {
         val ok_json = makeDefaultResponse (HttpStatus.OK, MediaType.APPLICATION_JSON, mapOf("X-TEST-HEADER" to "TEST-VALUE"))
-
         val dsl = ok_json {
             body { Dummy("Jun", 25) }
         }
@@ -73,5 +72,28 @@ class ServletDslTest : FunSpec({
         dsl.statusCode() shouldBe fluentApi.statusCode()
         dsl.headers().toMap() shouldBe fluentApi.headers().toMap()
         dslEntity shouldBe responseEntity
+    }
+
+    test("unaryPlus works") {
+        val usedHeaderBuilder = response {
+            status { HttpStatus.OK }
+            headers {
+                header { HttpHeaders.CONTENT_TYPE to MediaType.APPLICATION_JSON_VALUE }
+                header { "X-TEST-HEADER" to "TEST-VALUE"}
+            }
+            body { Dummy("Jun", 25) }
+        }
+
+        val usedUnaryPlus = response {
+            status { HttpStatus.OK }
+            headers {
+                +{HttpHeaders.CONTENT_TYPE to MediaType.APPLICATION_JSON_VALUE}
+                +{"X-TEST-HEADER" to "TEST-VALUE"}
+            }
+            body { Dummy("Jun", 25) }
+        }
+
+        usedHeaderBuilder.headers().toMap() shouldBe usedUnaryPlus.headers().toMap()
+
     }
 })

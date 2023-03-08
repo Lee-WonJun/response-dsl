@@ -11,6 +11,10 @@ import org.springframework.web.servlet.function.ServerResponse
 class HeadersBuilder {
     private var headers: MutableMap<String, String> = mutableMapOf()
 
+    operator fun (() -> Pair<String, String>).unaryPlus() {
+        headers[this().first] = this().second
+    }
+
     fun header(init: () -> Pair<String, String>) {
         headers[init().first] = init().second
     }
