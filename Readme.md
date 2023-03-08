@@ -3,7 +3,7 @@
 Kotlin DSL for ServerResponse.
 
 - [x] servlet DSL
-- [ ] webflux DSL
+- [x] webflux DSL
 
 ## Usage
 
@@ -28,6 +28,32 @@ val response = response {
         header { "X-TEST-B" to "5678" }
     }
     body { "Hello, World!" }
+}
+```
+
+Webflux DSL
+```kotlin
+val responseWithBodyValue = withContext(CoroutineScope(Dispatchers.Default).coroutineContext) {
+    response {
+        status { HttpStatus.OK }
+        contentType { MediaType.TEXT_PLAIN }
+        header { "X-TEST-HEADER" to "TEST-VALUE" }
+        bodyValue { "Hello World" }
+    }
+}
+
+val responseWithBody =  withContext(CoroutineScope(Dispatchers.Default).coroutineContext) {
+    response {
+        status { HttpStatus.OK }
+        contentType { MediaType.TEXT_PLAIN }
+        header { "X-TEST-HEADER" to "TEST-VALUE" }
+        body {
+            flow {
+                emit("Hello World")
+                emit("Hello World")
+            }
+        }
+    }
 }
 ```
 
