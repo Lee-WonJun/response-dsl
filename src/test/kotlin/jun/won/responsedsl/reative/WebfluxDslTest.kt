@@ -16,7 +16,6 @@ import org.springframework.web.reactive.function.server.bodyAndAwait
 import org.springframework.web.reactive.function.server.bodyValueAndAwait
 
 
-data class Dummy(val name: String, val age: Int)
 class WebfluxDslTest : FunSpec({
     test("DSL generates the same result as Fluent API.") {
         val fluentApi = withContext(CoroutineScope(Dispatchers.Default).coroutineContext) {

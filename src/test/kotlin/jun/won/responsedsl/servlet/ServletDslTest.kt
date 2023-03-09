@@ -2,13 +2,13 @@ package jun.won.responsedsl.servlet
 
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
+import jun.won.responsedsl.model.Dummy
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.web.servlet.function.EntityResponse
 import org.springframework.web.servlet.function.ServerResponse
 
-data class Dummy(val name: String, val age: Int)
 class ServletDslTest : FunSpec({
     test("DSL generates the same result as Fluent API.") {
         val fluentApi = ServerResponse.status(HttpStatus.OK)
